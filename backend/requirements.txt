@@ -1,7 +1,7 @@
 flask
 flask_cors
 currencyconverter
-googletrans==4.0.0-rc1
+deep-translator
 PyPDF2
 python-docx
 google-generativeai

@@ -1,6 +1,6 @@
 from flask import Flask,request,jsonify
 from flask_cors import CORS
-from googletrans import Translator
+from deep_translator import GoogleTranslator
 from currency_converter import CurrencyConverter
 from text_parser import extract_from_docx ,extract_from_pdf
 from llm_setup import text_to_json
@@ -9,7 +9,7 @@ app = Flask(__name__)
 CORS(app)
 
 converter = CurrencyConverter()
-translator = Translator()
+
 
 
 
@@ -66,19 +66,13 @@ def convert_currency():
 def convert_language():
     try:
         data = request.get_json()
-        # Extract fields
         dest_lang = data.get("dest_lang")       
         content = data.get("content")         
 
-        # Validate input
+        translated = GoogleTranslator(source='auto', target=dest_lang).translate(content)
 
-        # Perform translation
-        result = translator.translate(content,dest=dest_lang).text
-
-
-        # Return translated text
         return jsonify({
-            "translated_content": result
+            "translated_content": translated
         })
 
     except Exception as e:
