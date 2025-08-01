@@ -1,0 +1,77 @@
+import React, { useState } from "react";
+import axios from "axios";
+
+const ResumeParser = () => {
+  const [file, setFile] = useState(null);
+  const [jsonData, setJsonData] = useState("");
+
+  const handleFileChange = (e) => {
+    if (e.target.files && e.target.files[0]) {
+      setFile(e.target.files[0]);
+    }
+  };
+
+  const handleParse = async () => {
+    if (!file) return;
+
+    const formData = new FormData();
+    formData.append("file", file);
+
+    try {
+      const res = await axios.post("http://127.0.0.1:5000/parse-resume", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      const formatted = JSON.stringify(res.data, null, 2);
+      setJsonData(formatted);
+    } catch (error) {
+      console.error("Error parsing resume:", error);
+      setJsonData("Error parsing resume.");
+    }
+  };
+
+const [loading, setLoading] = useState(false);
+
+return (
+    <div className=" mx-auto w-2xl p-4 border rounded-md shadow-sm space-y-4 mt-6">
+        <h2 className="text-lg font-semibold text-center">Resume Parser</h2>
+
+        <input
+            type="file"
+            accept=".pdf,.docx"
+            onChange={handleFileChange}
+            className="w-full p-4 border-2 cursor-pointer"
+            
+        />
+
+        <button
+            className="w-full py-2 bg-green-600 text-white rounded hover:bg-green-700 cursor-pointer"
+            onClick={async () => {
+                setLoading(true);
+                await handleParse();
+                setLoading(false);
+            }}
+            disabled={loading}
+        >
+            {loading ? "Parsing..." : "Parse"}
+        </button>
+
+        {loading && (
+            <div className="flex justify-center items-center mt-4">
+                <span className="animate-spin rounded-full h-6 w-6 border-t-2 border-b-2 border-green-600 mr-2"></span>
+                <span>Parsing resume...</span>
+            </div>
+        )}
+
+        {jsonData && !loading && (
+            <div className="mt-4 border rounded p-2 bg-gray-100 text-sm h-64 overflow-y-scroll whitespace-pre-wrap font-mono ">
+                {jsonData}
+            </div>
+        )}
+    </div>
+);
+};
+
+export default ResumeParser;
