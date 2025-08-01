@@ -62,6 +62,14 @@
 
 ---
 
+4. **Create a frontend environment file**:
+
+    - In the `frontend` directory, create a `.env` file.
+    - Add the following line to specify your backend URL:
+      ```
+      VITE_BACKEND_URL=http://127.0.0.1:5000
+      ```
+    - Replace the URL if your backend runs on a different address or port.
 ## File Structure Overview
 
 ```

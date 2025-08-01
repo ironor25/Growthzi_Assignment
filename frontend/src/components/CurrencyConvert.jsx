@@ -11,7 +11,7 @@ const CurrencyConverter = () => {
 
   const handleConvert = async () => {
     try {
-      const response = await axios.post("http://127.0.0.1:5000/convert-curr", {
+      const response = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/convert-curr`, {
         amount,
         from: fromCurrency,
         to: toCurrency,

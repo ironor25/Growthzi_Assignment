@@ -18,7 +18,7 @@ const ResumeParser = () => {
     formData.append("file", file);
 
     try {
-      const res = await axios.post("http://127.0.0.1:5000/parse-resume", formData, {
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/parse-resume`, formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

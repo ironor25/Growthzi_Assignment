@@ -8,10 +8,10 @@ const ContentTranslator = () => {
 
   const handleTranslate = async () => {
     if (!text.trim()) return;
-
+    console.log(import.meta.env.VITE_BACKEND_URL)
     try {
-      const res = await axios.post("http://127.0.0.1:5000/translate", {
-        content:text,
+      const res = await axios.post(`${import.meta.env.VITE_BACKEND_URL}/translate`, {
+        content: text,
         dest_lang: destLang,
       });
 
