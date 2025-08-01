@@ -4,5 +4,5 @@ currencyconverter
 googletrans==4.0.0-rc1
 PyPDF2
 python-docx
-google.generativeai
-dotenv
+google-generativeai
+python-dotenv

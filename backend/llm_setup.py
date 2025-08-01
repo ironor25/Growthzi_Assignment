@@ -4,7 +4,7 @@ from dotenv import load_dotenv
 from output_cleanup import extract_json
 load_dotenv()
 # Set API Key (you can use os.environ or hardcode)
-genai.configure(api_key=os.getenv("GOOGLE_API_KEY"))
+genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
 
 # Load Gemini Pro
 model = genai.GenerativeModel("gemini-1.5-pro-latest")
