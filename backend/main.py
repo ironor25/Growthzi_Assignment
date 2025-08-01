@@ -25,16 +25,15 @@ def parse_resume():
         # Determine file type
    
         if filename.endswith('.pdf'):
-            print("came to pdf")
+
             text = extract_from_pdf(file)
         elif filename.endswith('.docx'):
-            print("came to docx")
+
             text = extract_from_docx(file)
         else:
             return jsonify({'error': 'Unsupported file type'}), 400
 
         # Send to LLM for JSON extraction
-        print("till llm")
         parsed_json = text_to_json(text)
         return jsonify(parsed_json)
 

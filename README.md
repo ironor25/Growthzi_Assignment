@@ -26,7 +26,7 @@
    - Create a `.env` file in the `backend` directory.
    - Add your Gemini API key:
      ```
-     GOOGLE_API_KEY=your-gemini-api-key-here
+     GEMINI_API_KEY=your-gemini-api-key-here
      ```
    - Replace `your-gemini-api-key-here` with your actual Gemini API key.
    - For Testing you can use this key `AIzaSyBJupw-mnhokj7iFR52Vgy0hUuuIrnAqOM`.
