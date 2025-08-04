@@ -1,0 +1,77 @@
+{% if data.skills %}
+<section id="skills" style="margin-bottom: 30px;">
+  <h2 style="font-size: 24px; border-bottom: 2px solid #ccc; padding-bottom: 5px;">Skills</h2>
+  <ul style="list-style-type: disc; padding-left: 20px;">
+    {% for skill in data.skills %}
+      <li>{{ skill }}</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{% if data.projects %}
+<section id="projects" style="margin-bottom: 30px;">
+  <h2 style="font-size: 24px; border-bottom: 2px solid #ccc; padding-bottom: 5px;">Projects</h2>
+  <ul style="list-style-type: none; padding-left: 0;">
+    {% for project in data.projects %}
+      <li style="margin-bottom: 15px;">
+        <strong>{{ project.title }}</strong><br>
+        {{ project.description }}<br>
+        <em>{{ project.tech_stack | join(', ') }}</em><br>
+        {% if project.link %}<a href="{{ project.link }}" style="color: #2980b9;">View</a>{% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{% if data.experience %}
+<section id="experience" style="margin-bottom: 30px;">
+  <h2 style="font-size: 24px; border-bottom: 2px solid #ccc; padding-bottom: 5px;">Experience</h2>
+  <ul style="list-style-type: none; padding-left: 0;">
+    {% for job in data.experience %}
+      <li style="margin-bottom: 15px;">
+        <strong>{{ job.company }}</strong> - {{ job.role }}<br>
+        <em>{{ job.duration }}</em><br>
+        {{ job.description }}
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{% if data.education %}
+<section id="education" style="margin-bottom: 30px;">
+  <h2 style="font-size: 24px; border-bottom: 2px solid #ccc; padding-bottom: 5px;">Education</h2>
+  <ul style="list-style-type: none; padding-left: 0;">
+    {% for edu in data.education %}
+      <li style="margin-bottom: 10px;">
+        <strong>{{ edu.institution }}</strong> - {{ edu.degree }}<br>
+        <em>{{ edu.duration }}</em>
+      </li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{% if data.achievements %}
+<section id="achievements" style="margin-bottom: 30px;">
+  <h2 style="font-size: 24px; border-bottom: 2px solid #ccc; padding-bottom: 5px;">Achievements</h2>
+  <ul style="list-style-type: disc; padding-left: 20px;">
+    {% for a in data.achievements %}
+      <li>{{ a }}</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
+{% if data.extra_activities %}
+<section id="extra-activities" style="margin-bottom: 30px;">
+  <h2 style="font-size: 24px; border-bottom: 2px solid #ccc; padding-bottom: 5px;">Extra Curricular Activities</h2>
+  <ul style="list-style-type: disc; padding-left: 20px;">
+    {% for e in data.extra_activities %}
+      <li>{{ e }}</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endif %}

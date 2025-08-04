@@ -1,4 +1,4 @@
-from flask import Flask,request,jsonify
+from flask import Flask,request,jsonify,render_template
 from flask_cors import CORS
 from deep_translator import GoogleTranslator
 from currency_converter import CurrencyConverter
@@ -11,6 +11,16 @@ CORS(app)
 converter = CurrencyConverter()
 
 
+from flask import Flask, request, render_template, jsonify
+import json
+
+@app.route('/resume-viewer', methods=['GET'])
+def resume_viewer():
+    data_json = request.get_json()
+    if not data_json:
+        return "Missing data", 400
+
+    return render_template("base.html", data= data_json)
 
 
 @app.route('/parse-resume', methods=['POST'])
@@ -35,7 +45,7 @@ def parse_resume():
 
         # Send to LLM for JSON extraction
         parsed_json = text_to_json(text)
-        return jsonify(parsed_json)
+        return render_template("base.html", data=parsed_json)
 
     except Exception as e:
         return jsonify({'error': str(e)}), 500

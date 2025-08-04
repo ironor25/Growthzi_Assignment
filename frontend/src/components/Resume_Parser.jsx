@@ -24,8 +24,9 @@ const ResumeParser = () => {
         },
       });
 
-      const formatted = JSON.stringify(res.data, null, 2);
-      setJsonData(formatted);
+      // const formatted = JSON.stringify(res.data, null, 2);
+      setJsonData(res.data);
+      console.log(typeof res.data)
     } catch (error) {
       console.error("Error parsing resume:", error);
       setJsonData("Error parsing resume.");
@@ -33,9 +34,10 @@ const ResumeParser = () => {
   };
 
 const [loading, setLoading] = useState(false);
+const [view,setview] = useState(true)
 
 return (
-    <div className=" mx-auto w-2xl p-4 border rounded-md shadow-sm space-y-4 mt-6">
+    <div className="w-6xl p-4 border rounded-md shadow-sm space-y-4 mt-6">
         <h2 className="text-lg font-semibold text-center">Resume Parser</h2>
 
         <input
@@ -66,8 +68,17 @@ return (
         )}
 
         {jsonData && !loading && (
-            <div className="mt-4 border rounded p-2 bg-gray-100 text-sm h-64 overflow-y-scroll whitespace-pre-wrap font-mono ">
-                {jsonData}
+          <div>
+            <div className="flex">
+            <button className="p-2 rounded-sm cursor-pointer mr-3 bg-blue-300  hover:bg-blue-400" onClick={()=> setview(true)}>Preview</button>
+            <button className="p-2 rounded-sm cursor-pointer  bg-blue-300 hover:bg-blue-400" onClick={()=> setview(false)}>Code</button>
+            </div>
+            {view ? (<div
+                className="mt-4 border rounded p-2 bg-white text-sm h-96 overflow-y-scroll"
+                dangerouslySetInnerHTML={{ __html: jsonData }}
+              />):
+              <div className="mt-4 border rounded p-2 bg-white text-sm h-96 overflow-y-scroll">
+                <pre>{jsonData}</pre></div>}
             </div>
         )}
     </div>

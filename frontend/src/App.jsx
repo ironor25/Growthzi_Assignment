@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div className='h-screen w-screen bg-gray-500'>
-      <div className='flex justify-center items-center '>
+      <div className='flex justify-center items-center'>
         <CurrencyConverter/>
         <ResumeParser/>
         <ContentTranslator/>
